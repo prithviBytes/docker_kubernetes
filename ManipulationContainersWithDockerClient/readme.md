@@ -80,3 +80,19 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
+
+### Restarting a container
+
+If we override the start command of a container and then restart it with another start command that doesnt work. Initially provided start command then becomes the default command of the container.
+```
+~$ docker run busybox echo "Hey there"
+Hey there
+~$ docker ps -all
+CONTAINER ID   IMAGE     COMMAND              CREATED         STATUS                     PORTS     NAMES
+79bd0bf4e9bd   busybox   "echo 'Hey there'"   9 seconds ago   Exited (0) 8 seconds ago             keen_wescoff
+~$ docker start -a 79bd0bf4e9bd echo "hey there again"
+you cannot start and attach multiple containers at once
+~$ docker start -a 79bd0bf4e9bd
+Hey there
+```
+
