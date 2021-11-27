@@ -95,4 +95,28 @@ you cannot start and attach multiple containers at once
 ~$ docker start -a 79bd0bf4e9bd
 Hey there
 ```
+### Removing stopped containers.
 
+```
+~$ docker system prune
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+79bd0bf4e9bd66397e4e3fa80291cf11192df5b12bcac31695016c352c9fa50c
+f388258cfed0df63d219d3e71e29f615b36b0a31fa9d6a5aa5b1f92cc997cabf
+028b49b89a0c97c00b1beac7cd1bfe980e233f8f52777dc4a8a690497a4b453f
+d918799af82baac912a92ad6eeb7d5de2d3a68dcfec3af1d9c8c047d686b450c
+c3bbfc58d1652132922cccdcef6a9e2335d667e21c0490fe1f6a0e3fb1b06e6c
+5296177a9f8507a3883b8332fb9ecb8999ea8dd906c861bf3601ace3ffdc2845
+d4562565d7e9d8a14a5c55a928bd8d9cca071e162cf61a0e702082c30410c07d
+fa726e5eda7335390a7608767579acbf01fc3e64baa18ad25ad7e5444ccb2bd4
+
+Total reclaimed space: 0B
+~$ docker ps --all
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
