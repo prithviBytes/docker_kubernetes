@@ -83,3 +83,9 @@ $ docker run -p 8080:8080 prithvi107/simplewebapp
 
 Listening on post 8080
 ```
+### Specifying working Directory
+
+Any instructions following this instruction will be executed relative to this directory.
+```
+WORKDIR /usr/app
+```
