@@ -120,3 +120,52 @@ Total reclaimed space: 0B
 ~$ docker ps --all
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
+### Check container logs
+
+```
+~$ docker create busybox echo hi there
+3dbcfcc62c300f46db953507e8cf967470ecfa99baa212cfcb37c4850719fbc8
+~$ docker start 3dbcfcc62c300f46db953507e8cf967470ecfa99baa212cfcb37c4850719fbc8
+3dbcfcc62c300f46db953507e8cf967470ecfa99baa212cfcb37c4850719fbc8
+~$ docker logs 3dbcfcc62c300f46db953507e8cf967470ecfa99baa212cfcb37c4850719fbc8
+hi there
+```
+
+### Stopping containers
+
+```
+~$ docker create busybox ping www.google.com
+31090ee9656f42d858da889deb3db243421df9f22d046cd79cb618d31967571f
+~$ docker start 31090ee9656f42d858da889deb3db243421df9f22d046cd79cb618d31967571f
+31090ee9656f42d858da889deb3db243421df9f22d046cd79cb618d31967571f
+~$ docker logs 31090ee9656f42d858da889deb3db243421df9f22d046cd79cb618d31967571f
+PING www.google.com (142.250.114.105): 56 data bytes
+64 bytes from 142.250.114.105: seq=0 ttl=37 time=260.436 ms
+64 bytes from 142.250.114.105: seq=1 ttl=37 time=257.661 ms
+64 bytes from 142.250.114.105: seq=2 ttl=37 time=258.378 ms
+64 bytes from 142.250.114.105: seq=3 ttl=37 time=257.578 ms
+64 bytes from 142.250.114.105: seq=4 ttl=37 time=258.383 ms
+64 bytes from 142.250.114.105: seq=5 ttl=37 time=259.983 ms
+64 bytes from 142.250.114.105: seq=6 ttl=37 time=259.922 ms
+64 bytes from 142.250.114.105: seq=7 ttl=37 time=258.393 ms
+64 bytes from 142.250.114.105: seq=8 ttl=37 time=261.091 ms
+64 bytes from 142.250.114.105: seq=9 ttl=37 time=258.207 ms
+64 bytes from 142.250.114.105: seq=10 ttl=37 time=261.914 ms
+64 bytes from 142.250.114.105: seq=11 ttl=37 time=257.851 ms
+64 bytes from 142.250.114.105: seq=12 ttl=37 time=259.134 ms
+64 bytes from 142.250.114.105: seq=13 ttl=37 time=259.747 ms
+~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                 CREATED          STATUS          PORTS     NAMES
+31090ee9656f   busybox   "ping www.google.com"   28 seconds ago   Up 19 seconds             objective_feistel
+```
+
+Two ways to stop the above process:
+1) docker stop - graceful, sends a SIGTERM signal (Stop will automatically send a SIGKILL after 10 secs)
+2) docker kill - sends a SIGKILL signal
+
+```
+~$ docker stop 31090ee9656f
+31090ee9656f
+~$ docker kill 4df9c4e297bb
+4df9c4e297bb
+```
