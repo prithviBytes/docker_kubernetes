@@ -97,3 +97,50 @@ Node.js v17.1.0
 Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application's services.
 
 All the services defined in docker-compose file is created under the same network and hence they can communicate easily.
+It creates a seperate network for the services.
+
+Example
+```
+$ docker-compose up
+Creating network "viewcounterproject_default" with the default driver
+Building node-app
+Sending build context to Docker daemon   5.12kB
+Step 1/6 : FROM node:alpine
+ ---> 9e17f47b0a78
+Step 2/6 : WORKDIR '/app'
+ ---> Using cache
+ ---> 05263a741881
+Step 3/6 : COPY './package.json' './'
+ ---> Using cache
+ ---> 61df3eb35800
+Step 4/6 : RUN npm install
+ ---> Using cache
+ ---> ec678f3057f8
+Step 5/6 : COPY './' './'
+ ---> 250ba44dbcb7
+Step 6/6 : CMD ["npm","start"]
+ ---> Running in 0154249aa9f5
+Removing intermediate container 0154249aa9f5
+ ---> 7d5388211396
+Successfully built 7d5388211396
+Successfully tagged viewcounterproject_node-app:latest
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+WARNING: Image for service node-app was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+Creating viewcounterproject_redis-server_1 ... done
+Creating viewcounterproject_node-app_1     ... done
+Attaching to viewcounterproject_redis-server_1, viewcounterproject_node-app_1
+redis-server_1  | 1:C 28 Nov 2021 15:27:07.429 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-server_1  | 1:C 28 Nov 2021 15:27:07.429 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-server_1  | 1:C 28 Nov 2021 15:27:07.429 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis-server_1  | 1:M 28 Nov 2021 15:27:07.430 * monotonic clock: POSIX clock_gettime
+redis-server_1  | 1:M 28 Nov 2021 15:27:07.431 * Running mode=standalone, port=6379.
+redis-server_1  | 1:M 28 Nov 2021 15:27:07.431 # Server initialized
+redis-server_1  | 1:M 28 Nov 2021 15:27:07.431 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis-server_1  | 1:M 28 Nov 2021 15:27:07.431 * Ready to accept connections
+node-app_1      | 
+node-app_1      | > start
+node-app_1      | > node index.js
+node-app_1      |
+node-app_1      | App started at 8081
+```
