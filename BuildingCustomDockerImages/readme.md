@@ -49,3 +49,38 @@ baymax@W10C8JP8Y2:/mnt/c/Users/Prithviraj_K_suvarna/OneDrive - Dell Technologies
 1:M 28 Nov 2021 13:04:15.392 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
 1:M 28 Nov 2021 13:04:15.392 * Ready to accept connections                                                      
 ```
+
+### Building Images from Container
+
+```
+~$ docker run -it alpine sh
+/ # apk add --update redis
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.15/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.15/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing redis (6.2.6-r0)
+Executing redis-6.2.6-r0.pre-install
+Executing redis-6.2.6-r0.post-install
+Executing busybox-1.34.1-r3.trigger
+OK: 8 MiB in 15 packages
+
+~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+247713e2fba9   alpine    "sh"      55 seconds ago   Up 54 seconds             blissful_napier
+
+
+~$ docker commit -c 'CMD ["redis-server"]' 247713e2fba9
+sha256:18b7484515ae1da43a9884eb001a4ffac79e3e01aa102f49bef8f5618b73cd7d
+
+
+~$ docker run 18b7484515ae1da43
+1:C 28 Nov 2021 13:13:22.208 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 28 Nov 2021 13:13:22.208 # Redis version=6.2.6, bits=64, commit=b39e1241, modified=0, pid=1, just started
+1:C 28 Nov 2021 13:13:22.208 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+1:M 28 Nov 2021 13:13:22.209 * monotonic clock: POSIX clock_gettime
+1:M 28 Nov 2021 13:13:22.210 * Running mode=standalone, port=6379.
+1:M 28 Nov 2021 13:13:22.210 # Server initialized
+1:M 28 Nov 2021 13:13:22.210 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+1:M 28 Nov 2021 13:13:22.210 * Ready to accept connections
+^C1:signal-handler (1638105203) Received SIGINT scheduling shutdown...
+1:signal-handler (1638105203) You insist... exiting now.
+```
