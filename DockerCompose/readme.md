@@ -144,3 +144,33 @@ node-app_1      | > node index.js
 node-app_1      |
 node-app_1      | App started at 8081
 ```
+
+### Docker Compose Commands
+
+Starting Containers
+```
+docker-compose up
+```
+
+Starting container in the background
+```
+docker-compose up -d
+
+
+$ docker-compose up -d
+Starting viewcounterproject_node-app_1     ... done
+Starting viewcounterproject_redis-server_1 ... done
+```
+
+Stopping all the containers
+```
+docker-compose down
+
+
+$ docker-compose down
+Stopping viewcounterproject_node-app_1     ... done
+Stopping viewcounterproject_redis-server_1 ... done
+Removing viewcounterproject_node-app_1     ... done
+Removing viewcounterproject_redis-server_1 ... done
+Removing network viewcounterproject_default
+```
