@@ -66,3 +66,20 @@ baymax@W10C8JP8Y2:/mnt/c/Users/Prithviraj_K_suvarna/OneDrive - Dell Technologies
 
 Listening on post 8080
 ```
+### Container PORT mapping
+
+PORT mapping is stictly a one time thing and is only done while executing the run command to the container.
+
+Command
+```
+docker run -p <host_port>:<container_port> <image_id>
+```
+
+```
+$ docker run -p 8080:8080 prithvi107/simplewebapp
+
+> start        
+> node index.js
+
+Listening on post 8080
+```
