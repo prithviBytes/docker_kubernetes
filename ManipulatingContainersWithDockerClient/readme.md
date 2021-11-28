@@ -169,3 +169,33 @@ Two ways to stop the above process:
 ~$ docker kill 4df9c4e297bb
 4df9c4e297bb
 ```
+
+### Executing commands inside a running container
+
+Following command runs a command inside a running container
+```
+docker exec -it <container_id> <command>
+```
+
+Example:
+```
+docker run redis
+1:C 28 Nov 2021 06:32:24.560 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 28 Nov 2021 06:32:24.560 # Redis version=6.2.6, bits=64, commit=00000000, modified=0, pid=1, just started
+1:C 28 Nov 2021 06:32:24.560 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+1:M 28 Nov 2021 06:32:24.561 * monotonic clock: POSIX clock_gettime
+1:M 28 Nov 2021 06:32:24.562 * Running mode=standalone, port=6379.
+1:M 28 Nov 2021 06:32:24.562 # Server initialized
+1:M 28 Nov 2021 06:32:24.562 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+1:M 28 Nov 2021 06:32:24.562 * Ready to accept connections
+
+baymax@W10C8JP8Y2:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS      NAMES
+b4bef050aa54   redis     "docker-entrypoint.s…"   29 seconds ago   Up 28 seconds   6379/tcp   compassionate_snyder
+baymax@W10C8JP8Y2:~$ docker exec -it b4bef050aa54 redis-cli
+127.0.0.1:6379> set muvalue 5
+OK
+127.0.0.1:6379> get muvalue
+"5"
+127.0.0.1:6379>
+```
