@@ -189,10 +189,10 @@ docker run redis
 1:M 28 Nov 2021 06:32:24.562 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
 1:M 28 Nov 2021 06:32:24.562 * Ready to accept connections
 
-baymax@W10C8JP8Y2:~$ docker ps
+~$ docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS      NAMES
 b4bef050aa54   redis     "docker-entrypoint.s…"   29 seconds ago   Up 28 seconds   6379/tcp   compassionate_snyder
-baymax@W10C8JP8Y2:~$ docker exec -it b4bef050aa54 redis-cli
+~$ docker exec -it b4bef050aa54 redis-cli
 127.0.0.1:6379> set muvalue 5
 OK
 127.0.0.1:6379> get muvalue
@@ -226,10 +226,10 @@ docker exec -it <container_id> sh
 ```
 
 ```
-baymax@W10C8JP8Y2:~$ docker ps
+~$ docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS      NAMES
 b4bef050aa54   redis     "docker-entrypoint.s…"   20 minutes ago   Up 20 minutes   6379/tcp   compassionate_snyder
-baymax@W10C8JP8Y2:~$ docker exec -it b4bef050aa54 sh
+~$ docker exec -it b4bef050aa54 sh
 # ls
 # cd /
 # ls
@@ -243,7 +243,7 @@ OK
 # ^C
 # ^C
 #
-baymax@W10C8JP8Y2:~$
+~$
 ```
 
 ### Running a shell
@@ -251,7 +251,7 @@ baymax@W10C8JP8Y2:~$
 Normally we would be using exec command to start a shell.
 
 ```
-baymax@W10C8JP8Y2:~$ docker run -it busybox sh
+~$ docker run -it busybox sh
 / # ls
 bin   dev   etc   home  proc  root  sys   tmp   usr   var
 / # ping www.google.com
