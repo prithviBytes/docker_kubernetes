@@ -189,3 +189,14 @@ docker-compose up --build
 - on-failure: Only restart the container if it stops with an error code
 - unless-stopped: Always restart unless the developers explicitly stop it.
 
+### Check container status using Docker-Compose
+
+```
+docker-compose ps
+
+
+             Name                             Command               State           Ports
+---------------------------------------------------------------------------------------------------                     rCompo
+viewcounterproject_node-app_1       docker-entrypoint.sh npm start   Up      0.0.0.0:4001->8081/tcp
+viewcounterproject_redis-server_1   docker-entrypoint.sh redis ...   Up      6379/tcp
+```
