@@ -174,3 +174,18 @@ Removing viewcounterproject_node-app_1     ... done
 Removing viewcounterproject_redis-server_1 ... done
 Removing network viewcounterproject_default
 ```
+
+Update the changes made by re-building
+
+```
+docker-compose up --build
+```
+
+
+### Restart Policies
+
+- no: Never attempt to restart.
+- always: If container stops for any reason restart it.
+- on-failure: Only restart the container if it stops with an error code
+- unless-stopped: Always restart unless the developers explicitly stop it.
+
