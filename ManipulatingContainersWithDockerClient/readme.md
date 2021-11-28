@@ -199,3 +199,17 @@ OK
 "5"
 127.0.0.1:6379>
 ```
+
+### IT Flag
+
+Each containers has 3 channels
+
+- STDIN
+- STDOUT
+- STDERR
+
+-i ==> Interactive -> Keep STDIN open even if not attached
+
+-t ==> pseudo-tty
+
+
