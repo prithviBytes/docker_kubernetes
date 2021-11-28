@@ -212,4 +212,59 @@ Each containers has 3 channels
 
 -t ==> pseudo-tty
 
+### Getting command prompt in a container
 
+Running the command processor of a container.
+Command processors can be 
+- sh
+- zsh
+- bash
+- powershell
+
+```
+docker exec -it <container_id> sh
+```
+
+```
+baymax@W10C8JP8Y2:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS      NAMES
+b4bef050aa54   redis     "docker-entrypoint.s…"   20 minutes ago   Up 20 minutes   6379/tcp   compassionate_snyder
+baymax@W10C8JP8Y2:~$ docker exec -it b4bef050aa54 sh
+# ls
+# cd /
+# ls
+bin  boot  data  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+# redis-cli
+127.0.0.1:6379> set myvalue "Prithvi"
+OK
+127.0.0.1:6379> get myvalue
+"Prithvi"
+127.0.0.1:6379>
+# ^C
+# ^C
+#
+baymax@W10C8JP8Y2:~$
+```
+
+### Running a shell
+
+Normally we would be using exec command to start a shell.
+
+```
+baymax@W10C8JP8Y2:~$ docker run -it busybox sh
+/ # ls
+bin   dev   etc   home  proc  root  sys   tmp   usr   var
+/ # ping www.google.com
+PING www.google.com (172.217.14.164): 56 data bytes
+64 bytes from 172.217.14.164: seq=0 ttl=37 time=623.531 ms
+64 bytes from 172.217.14.164: seq=1 ttl=37 time=256.429 ms
+64 bytes from 172.217.14.164: seq=2 ttl=37 time=256.708 ms
+64 bytes from 172.217.14.164: seq=3 ttl=37 time=256.355 ms
+^C
+--- www.google.com ping statistics ---
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip min/avg/max = 256.355/348.255/623.531 ms
+/ # ^C
+/ # ^C
+/ #
+```
